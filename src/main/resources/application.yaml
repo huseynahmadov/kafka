@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/kafka_tutorial
+    username: root
+    password: root
+  kafka:
+    bootstrap-servers: localhost:9092
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update

@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.8'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'az.company'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    configureEach {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.kafka:spring-kafka'
+    implementation group: 'org.mapstruct', name: 'mapstruct', version: '1.5.3.Final'
+    annotationProcessor group: 'org.mapstruct', name: 'mapstruct-processor', version: '1.5.3.Final'
+    compileOnly 'org.projectlombok:lombok'
+    implementation "org.springframework.boot:spring-boot-starter-log4j2"
+    implementation "org.apache.kafka:kafka-log4j-appender:1.0.0"
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.kafka:spring-kafka-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
